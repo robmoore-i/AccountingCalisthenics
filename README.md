@@ -5,6 +5,8 @@ https://github.com/bibryam/crafting-OO-code-kata. I then wrote up the
 requirements more explicitly based on the solution, and added some IO, to make
 it better suited as a training exercise.
 
+Note: The default branch on this repository is 'main', not 'master'.
+
 ## What to do
 
 Create a simple accounting application that has:
