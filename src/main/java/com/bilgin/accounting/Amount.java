@@ -1,7 +1,7 @@
 package com.bilgin.accounting;
 
 public class Amount {
-    private int value;
+    private final int value;
 
     public Amount(int value) {
         this.value = value;
@@ -14,9 +14,7 @@ public class Amount {
 
         Amount amount = (Amount) o;
 
-        if (value != amount.value) return false;
-
-        return true;
+        return value == amount.value;
     }
 
     @Override

@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class EndToEndTest {
@@ -25,14 +27,12 @@ public class EndToEndTest {
         AccountStatement statement = account.generateStatement();
 
         printer.print(statement);
-        assertTrue(stringBuilder.toString().equals(emptyStatement()));
+        assertEquals(stringBuilder.toString(), emptyStatement());
     }
 
     private String emptyStatement() {
-        return  "---------------Statement--------------------\n" +
+        return "---------------Statement--------------------\n" +
                 "---------------Transactions-----------------\n" +
-                "---------------Total Amount-----------------\n" +
-                "Amount: 0\n" +
                 "---------------Total Balance----------------\n" +
                 "Amount: 0\n";
     }
@@ -46,17 +46,15 @@ public class EndToEndTest {
         AccountStatement statement = account.generateStatement();
 
         printer.print(statement);
-        assertTrue(stringBuilder.toString().equals(transactionsResult()));
+        assertEquals(stringBuilder.toString(), transactionsResult());
     }
 
     private String transactionsResult() {
-        return  "---------------Statement--------------------\n" +
+        return "---------------Statement--------------------\n" +
                 "---------------Transactions-----------------\n" +
                 "Deposit transaction:    " + date + ": Amount: 10\n" +
                 "Deposit transaction:    " + date + ": Amount: 5\n" +
-                "WithDrawal transaction: " + date + ": Amount: 7\n" +
-                "---------------Total Amount-----------------\n" +
-                "Amount: 8\n" +
+                "Withdrawal transaction: " + date + ": Amount: 7\n" +
                 "---------------Total Balance----------------\n" +
                 "Amount: 8\n";
     }

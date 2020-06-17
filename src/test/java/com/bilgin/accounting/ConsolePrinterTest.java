@@ -17,14 +17,14 @@ public class ConsolePrinterTest {
     private AccountStatement statement;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         stringBuilder = new StringBuilder();
         consolePrinter = new ConsolePrinter(stringBuilder);
         statement = mock(AccountStatement.class);
     }
 
     @Test
-    public void testPrintStatement() throws Exception {
+    public void testPrintStatement() {
         consolePrinter.print(statement);
 
         assertTrue(stringBuilder.toString().contains("Statement"));
@@ -32,7 +32,7 @@ public class ConsolePrinterTest {
     }
 
     @Test
-    public void testPrintTransactions() throws Exception {
+    public void testPrintTransactions() {
         List<Transaction> transactions = new ArrayList<Transaction>();
         Transaction transactionOne = mock(Transaction.class);
         transactions.add(transactionOne);
@@ -46,17 +46,7 @@ public class ConsolePrinterTest {
     }
 
     @Test
-    public void testPrintAmount() throws Exception {
-        Amount amount = mock(Amount.class);
-        consolePrinter.printTotalAmount(amount);
-
-        assertTrue(stringBuilder.toString().contains("Amount"));
-        verify(amount).print(consolePrinter);
-
-    }
-
-    @Test
-    public void testPrintBalance() throws Exception {
+    public void testPrintBalance() {
         Amount amount = mock(Amount.class);
         consolePrinter.printTotalBalance(amount);
 

@@ -2,11 +2,11 @@ package com.bilgin.accounting;
 
 import java.util.Date;
 
-public class WithDrawalTransaction implements Transaction {
-    private Date date;
+public class WithdrawalTransaction implements Transaction {
+    private final Date date;
     private final Amount amount;
 
-    public WithDrawalTransaction(Amount amount, Date date) {
+    public WithdrawalTransaction(Amount amount, Date date) {
         this.amount = amount;
         this.date = date;
     }
@@ -16,12 +16,10 @@ public class WithDrawalTransaction implements Transaction {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        WithDrawalTransaction that = (WithDrawalTransaction) o;
+        WithdrawalTransaction that = (WithdrawalTransaction) o;
 
         if (!amount.equals(that.amount)) return false;
-        if (!date.equals(that.date)) return false;
-
-        return true;
+        return date.equals(that.date);
     }
 
     @Override
@@ -32,10 +30,9 @@ public class WithDrawalTransaction implements Transaction {
     }
 
     public void print(StatementPrinter printer) {
-        printer.printRaw("WithDrawal transaction: " + date + ": ");
+        printer.printRaw("Withdrawal transaction: " + date + ": ");
         amount.print(printer);
     }
-
 
     public Amount applyTo(Amount amount) {
         return amount.subtract(this.amount);

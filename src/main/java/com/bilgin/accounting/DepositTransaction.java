@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DepositTransaction implements Transaction {
 
-    private Date date;
+    private final Date date;
     private final Amount amount;
 
     public DepositTransaction(Amount amount, Date date) {
@@ -20,9 +20,7 @@ public class DepositTransaction implements Transaction {
         DepositTransaction that = (DepositTransaction) o;
 
         if (!amount.equals(that.amount)) return false;
-        if (!date.equals(that.date)) return false;
-
-        return true;
+        return date.equals(that.date);
     }
 
     @Override

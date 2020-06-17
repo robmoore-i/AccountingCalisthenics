@@ -8,23 +8,23 @@ import java.util.Date;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class WithDrawalTransactionTest {
+public class WithdrawalTransactionTest {
 
     private Date date;
     private StatementPrinter printer;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         date = new Date();
         printer = mock(StatementPrinter.class);
     }
 
     @Test
-    public void testPrintTransaction() throws Exception {
+    public void testPrintTransaction() {
         Amount amount = mock(Amount.class);
-        Transaction transaction = new WithDrawalTransaction(amount, date);
+        Transaction transaction = new WithdrawalTransaction(amount, date);
         transaction.print(printer);
-        verify(printer).printRaw("WithDrawal transaction: " + date + ": ");
+        verify(printer).printRaw("Withdrawal transaction: " + date + ": ");
         verify(amount).print(printer);
     }
 }

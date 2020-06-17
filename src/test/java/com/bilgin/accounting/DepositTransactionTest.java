@@ -14,13 +14,13 @@ public class DepositTransactionTest {
     private StatementPrinter printer;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         date = new Date();
         printer = mock(StatementPrinter.class);
     }
 
     @Test
-    public void testPrintTransaction() throws Exception {
+    public void testPrintTransaction() {
 
         Amount amount = mock(Amount.class);
         Transaction transaction = new DepositTransaction(amount, date);

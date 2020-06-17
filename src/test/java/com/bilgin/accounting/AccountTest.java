@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class AccountTest {
 
@@ -30,7 +29,7 @@ public class AccountTest {
         Account account = anAccount();
         AccountStatement accountStatement = account.generateStatement();
         AccountStatement emptyStatement = new AccountStatement();
-        assertTrue(accountStatement.equals(emptyStatement));
+        assertEquals(accountStatement, emptyStatement);
     }
 
     @Test
@@ -40,7 +39,7 @@ public class AccountTest {
         AccountStatement accountStatement = account.generateStatement();
 
         AccountStatement depositStatement = aStatementWith(aDepositFor(anAmountOf(5)));
-        assertTrue(accountStatement.equals(depositStatement));
+        assertEquals(accountStatement, depositStatement);
     }
 
     @Test
@@ -50,22 +49,22 @@ public class AccountTest {
         AccountStatement accountStatement = account.generateStatement();
 
         AccountStatement withDrawalStatement = aStatementWith(aWithdrawalFor(anAmountOf(5)));
-        assertTrue(accountStatement.equals(withDrawalStatement));
+        assertEquals(accountStatement, withDrawalStatement);
     }
 
     @Test
-    public void statementWithDifferentTranasactions() {
+    public void statementWithDifferentTransactions() {
         Account account = anAccount();
         account.deposit(anAmountOf(10), date);
         account.withdrawal(anAmountOf(3), date);
         AccountStatement accountStatement = account.generateStatement();
 
         AccountStatement twoTransactionStatement = aStatementWith(aDepositFor(anAmountOf(10)), aWithdrawalFor(anAmountOf(3)));
-        assertTrue(accountStatement.equals(twoTransactionStatement));
+        assertEquals(accountStatement, twoTransactionStatement);
     }
 
-    private WithDrawalTransaction aWithdrawalFor(Amount amount) {
-        return new WithDrawalTransaction(amount, date);
+    private WithdrawalTransaction aWithdrawalFor(Amount amount) {
+        return new WithdrawalTransaction(amount, date);
     }
 
     private DepositTransaction aDepositFor(Amount amount) {
@@ -73,8 +72,7 @@ public class AccountTest {
     }
 
     private AccountStatement aStatementWith(Transaction... transaction) {
-        List<Transaction> accountTransactions = new ArrayList<Transaction>();
-        accountTransactions.addAll(Arrays.asList(transaction));
+        List<Transaction> accountTransactions = new ArrayList<Transaction>(Arrays.asList(transaction));
         return new AccountStatement(accountTransactions);
     }
 

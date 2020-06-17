@@ -28,13 +28,6 @@ public class ConsolePrinter implements StatementPrinter {
         newLine();
     }
 
-    public void printTotalAmount(Amount amount) {
-        printRaw("---------------Total Amount-----------------");
-        newLine();
-        amount.print(this);
-        newLine();
-    }
-
     public void printTotalBalance(Amount amount) {
         printRaw("---------------Total Balance----------------");
         newLine();
